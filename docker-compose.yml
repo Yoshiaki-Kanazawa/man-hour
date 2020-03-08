@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: ./db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: apuser
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: manhour
+      TZ: "Asia/Tokyo"
+      BIND-ADDRESS: 0.0.0.0
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/data:/var/lib/mysql
+    tty: true
+
+  django:
+    build:
+      context: ./app
+    command: python3 manage.py runserver 0.0.0.0:30000
+    ports:
+      - "30000:30000"
+    tty: true
+    depends_on:
+      - db
