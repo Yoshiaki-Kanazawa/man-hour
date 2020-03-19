@@ -24,6 +24,5 @@ services:
     command: python3 manage.py runserver 0.0.0.0:30000
     ports:
       - "30000:30000"
-    tty: true
     depends_on:
       - db

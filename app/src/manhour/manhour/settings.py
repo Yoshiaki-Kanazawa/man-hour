@@ -25,7 +25,7 @@ SECRET_KEY = 'pb=5t_uv_9c9xd%!al8m1z1oi3&ocq^a)03g1grim8vo=kakw+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','localhost']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'manhour.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,4 +133,4 @@ STATICFILES_DIRS = (
 )
 
 # ログイン後トップページにリダイレクト
-LOGIN_REDIRECT_URL = '/manhour'
+LOGIN_REDIRECT_URL = '/management'
